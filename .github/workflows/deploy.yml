@@ -1,0 +1,47 @@
+name: Deploy to EC2
+
+# main 에 push 되면: 테스트(ci) 통과를 선행 조건으로 → EC2 에 SSH 배포.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # 배포 전 게이트: 테스트가 깨지면 배포하지 않는다.
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    needs: test
+    # EC2 준비 전(Phase 6 이전)엔 skip → 첫 push 가 빨갛게 실패하지 않는다.
+    # EC2 세팅 후 레포 Variables 에 DEPLOY_ENABLED=true 를 넣으면 배포가 켜진다.
+    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: EC2 SSH 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            cd ~/ai-lunch-curator
+            git pull --ff-only
+
+            # .env 는 깃에 없다 → 배포 시 Secrets 로 생성/주입
+            cat > .env <<'EOF'
+            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+            OPENAI_TEXT_MODEL=gpt-4o-mini
+            OPENAI_IMAGE_MODEL=gpt-image-1
+            WEBHOOK_URL=${{ secrets.WEBHOOK_URL }}
+            APP_BASE_URL=${{ secrets.APP_BASE_URL }}
+            MENU_SOURCE_URL=${{ secrets.MENU_SOURCE_URL }}
+            ORACLE_USER=${{ secrets.ORACLE_USER }}
+            ORACLE_PASSWORD=${{ secrets.ORACLE_PASSWORD }}
+            ORACLE_ADMIN_PASSWORD=${{ secrets.ORACLE_ADMIN_PASSWORD }}
+            ORACLE_DSN=localhost:1522/XEPDB1
+            COLLECT_TOKEN=${{ secrets.COLLECT_TOKEN }}
+            EOF
+
+            docker compose up -d --build
+            docker compose ps
