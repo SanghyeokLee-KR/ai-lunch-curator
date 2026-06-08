@@ -1,0 +1,6 @@
+# 저장소·체크아웃 모두 LF 로 통일 (배포 스크립트/YAML 안정성).
+* text=auto eol=lf
+
+# 바이너리는 변환 금지
+*.png binary
+*.ico binary

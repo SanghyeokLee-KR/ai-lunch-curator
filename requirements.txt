@@ -1,0 +1,18 @@
+# --- 코어 봇 (Phase 1) ---
+requests>=2.31
+beautifulsoup4>=4.12
+openai>=1.40
+python-dotenv>=1.0
+
+# --- 웹 (Phase 4) ---
+fastapi>=0.110
+uvicorn[standard]>=0.29
+jinja2>=3.1
+
+# --- DB (Phase 3) ---
+oracledb>=2.2
+
+# --- 테스트 (Phase 2) ---
+pytest>=8.0
+respx>=0.21
+httpx>=0.27
