@@ -34,17 +34,22 @@
         <mxCell id="oracle" parent="1" style="shape=label;html=1;whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#E5E7EB;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHBhdGggZD0iTTAgMGg2NHY2NEgweiIgZmlsbD0iI2UzMDYxMyIvPjxwYXRoIGQ9Ik0yMC4yIDUyLjJDOC45MyA1Mi4yIDAgNDMuMDU2IDAgMzJjMC0xMS4yNyA5LjE0My0yMC4yIDIwLjItMjAuMmgyMy42QzU1LjA3IDExLjggNjQgMjAuOTQ0IDY0IDMyYzAgMTEuMjctOS4xNDMgMjAuMi0yMC4yIDIwLjJ6bTIzLjE3Ni03LjIzYzcuMjMgMCAxMy4xODMtNS45NTMgMTMuMTgzLTEzLjE4M3MtNS45NTMtMTMuMTgzLTEzLjE4My0xMy4xODNIMjAuODM3Yy03LjIzIDAtMTMuMTgzIDUuOTUzLTEzLjE4MyAxMy4xODNTMTMuNjA4IDQ0Ljk3IDIwLjgzNyA0NC45N3oiIGZpbGw9IiNmZmYiLz48L3N2Zz4=;imageWidth=36;imageHeight=36;imageAlign=left;imageVerticalAlign=middle;align=left;spacingLeft=56;fontSize=14;" value="&lt;b&gt;Oracle&lt;/b&gt;  1521 → host 1522&lt;br&gt;&lt;span style=&quot;color:#D14343;font-size:11px&quot;&gt;● 미공개 — 보안 그룹이 차단&lt;/span&gt;" vertex="1">
           <mxGeometry height="62" width="430" x="622" y="456" as="geometry" />
         </mxCell>
-        <mxCell id="eSsh" edge="1" parent="1" source="net" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8A94A6;fontColor=#566173;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.16;entryDx=0;entryDy=0;" target="ec2" value="SSH :22 (키 인증)">
-          <mxGeometry relative="1" x="0.0058" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="eHttp" edge="1" parent="1" source="net" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#2E9E5B;fontColor=#2E9E5B;fontSize=11;fontStyle=1;labelBackgroundColor=#ffffff;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nginx" value="HTTP :80">
-          <mxGeometry relative="1" x="0.6643" as="geometry">
+        <mxCell id="eSsh" edge="1" parent="1" source="net" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8A94A6;fontColor=#566173;fontSize=11;labelBackgroundColor=#ffffff;entryX=0.001;entryY=0.542;entryDx=0;entryDy=0;exitX=0.999;exitY=0.693;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" target="ec2" value="SSH :22 (키 인증)">
+          <mxGeometry relative="1" x="0.0959" as="geometry">
             <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="457" y="427" />
-              <mxPoint x="457" y="331" />
+              <mxPoint x="397" y="427" />
+              <mxPoint x="601" y="427" />
+            </Array>
+            <mxPoint x="194" y="423" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eHttp" edge="1" parent="1" source="net" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#2E9E5B;fontColor=#2E9E5B;fontSize=11;fontStyle=1;labelBackgroundColor=#ffffff;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nginx" value="HTTP :80">
+          <mxGeometry relative="1" x="0.5094" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="407" y="384" />
+              <mxPoint x="407" y="331" />
             </Array>
           </mxGeometry>
         </mxCell>
