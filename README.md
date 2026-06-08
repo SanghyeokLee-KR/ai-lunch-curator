@@ -128,7 +128,7 @@ Pretendard · 따뜻한 오프화이트 + 테라코타 톤. 디자인 토큰을 
 외부에는 **Nginx(:80)만 공개**하고 앱(:8000)은 `127.0.0.1`로만 바인드해 직접 접근을 막았습니다. 수집·발송 트리거는
 GitHub Actions가 cron으로 호출하고, 앱은 KOPO 식단표·OpenAI·Teams 세 곳과만 외부 통신합니다.
 
-![배포 아키텍처](docs/architecture.png)
+<p align="center"><img src="diagrams/png/01-architecture.png" width="960" alt="배포 아키텍처"></p>
 
 ### 데이터 모델 (ERD)
 
@@ -167,26 +167,9 @@ erDiagram
 
 ### 수집 · 발송 시퀀스
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant GHA as GitHub Actions
-    participant App as FastAPI
-    participant Web as KOPO 식단표
-    participant AI as OpenAI
-    participant DB as Oracle XE
-    participant TM as Teams
-    Note over GHA,TM: 주간 수집 · 월 08:30 KST
-    GHA->>App: POST /api/collect-weekly + 토큰
-    App-->>GHA: 202 Accepted (백그라운드)
-    App->>Web: 식단표 크롤링
-    App->>AI: 메뉴 분석 + 대표 이미지
-    App->>DB: MERGE UPSERT
-    Note over GHA,TM: 일일 발송 · 평일 09:00 KST
-    GHA->>App: POST /api/send-today + 토큰
-    App->>DB: 오늘 메뉴 조회
-    App->>TM: Adaptive Card 발송
-```
+<p align="center"><img src="diagrams/png/02-sequence.png" width="960" alt="수집 · 발송 시퀀스"></p>
+
+> 이 문서의 draw.io 다이어그램 원본(`.drawio`)은 모두 [`diagrams/src/`](diagrams/src)에 있어 그대로 열어 편집할 수 있습니다. PNG는 `diagrams/png/`로 내보낸 것입니다.
 
 ---
 
@@ -215,6 +198,8 @@ sequenceDiagram
 
 > GitHub Actions 스케줄은 정시 보장이 안 되고(수 분~수십 분 지연), 레포가 60일 비활성이면 자동 비활성화됩니다.
 
+<p align="center"><img src="diagrams/png/03-cicd.png" width="960" alt="CI/CD 파이프라인"></p>
+
 <table align="center">
 <tr>
 <td align="center" width="50%"><img src="docs/screenshots/09-ci.png" alt="ci"><br><b>CI — pytest 통과</b></td>
@@ -228,6 +213,8 @@ sequenceDiagram
 
 EC2(Ubuntu, t3.small + 스왑)에 `docker compose`로 올리고, 외부엔 Nginx(80)만 노출합니다. 앱(8000)은 `127.0.0.1`로만
 바인드하고 보안 그룹은 22·80만 열어, 8000·1521 같은 내부 포트는 밖에서 닿지 않습니다.
+
+<p align="center"><img src="diagrams/png/04-network.png" width="960" alt="네트워크 · 보안 그룹"></p>
 
 <table align="center">
 <tr>
