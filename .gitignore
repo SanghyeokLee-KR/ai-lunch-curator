@@ -19,3 +19,7 @@ Thumbs.db
 .DS_Store
 .idea/
 .vscode/
+
+# draw.io 편집 백업/임시
+*.bkp
+*.dtmp
