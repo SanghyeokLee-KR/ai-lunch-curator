@@ -1,0 +1,23 @@
+name: Weekly Menu Collect
+
+# 매주 월요일 08:30 KST 에 주간 식단 수집을 트리거.
+#   - 08:30 KST = 일요일 23:30 UTC (KST = UTC+9)
+# 주의(GitHub Actions schedule 한계):
+#   - 스케줄은 수 분~수십 분 지연될 수 있다(정시 보장 X).
+#   - 레포가 60일간 비활성이면 스케줄이 자동 비활성화된다.
+#   - 기본 브랜치(main)의 워크플로만 스케줄로 동작한다.
+#   - APP_BASE_URL 은 GitHub 러너에서 닿는 '공개' 주소여야 한다(EC2 배포 후).
+on:
+  schedule:
+    - cron: "30 23 * * 0"
+  workflow_dispatch: {} # 수동 실행(데모/백필)
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 주간 수집 트리거 (collect-weekly)
+        run: |
+          curl -fsS --max-time 60 -X POST \
+            "${{ secrets.APP_BASE_URL }}/api/collect-weekly" \
+            -H "Authorization: Bearer ${{ secrets.COLLECT_TOKEN }}"

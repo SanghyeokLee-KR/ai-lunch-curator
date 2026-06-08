@@ -1,0 +1,23 @@
+name: Daily Teams Notify
+
+# 평일(월~금) 09:00 KST 에 오늘 메뉴를 Teams 로 발송 트리거.
+#   - 09:00 KST = 00:00 UTC (KST = UTC+9)
+# 주의(GitHub Actions schedule 한계):
+#   - 스케줄은 수 분~수십 분 지연될 수 있다.
+#   - 레포 60일 무활동 시 자동 비활성화.
+#   - 기본 브랜치(main)에서만 동작.
+#   - APP_BASE_URL 은 공개 주소여야 한다(EC2 배포 후).
+on:
+  schedule:
+    - cron: "0 0 * * 1-5"
+  workflow_dispatch: {} # 수동 실행 → 데모로 Teams 카드 즉시 발송
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 오늘 메뉴 발송 트리거 (send-today)
+        run: |
+          curl -fsS --max-time 60 -X POST \
+            "${{ secrets.APP_BASE_URL }}/api/send-today" \
+            -H "Authorization: Bearer ${{ secrets.COLLECT_TOKEN }}"
