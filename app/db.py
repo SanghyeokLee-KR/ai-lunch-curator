@@ -6,6 +6,8 @@ from pathlib import Path
 
 import oracledb
 
+from .utils import today_kst
+
 logger = logging.getLogger(__name__)
 
 oracledb.defaults.fetch_lobs = False  # CLOB 을 str/파싱된 값으로 바로 받기
@@ -142,13 +144,13 @@ def _row_to_menu(row):
 def get_today():
     with pool().acquire() as con:
         cur = con.cursor()
-        cur.execute(f"SELECT {_MENU_COLS} FROM LUNCH_MENU WHERE MENU_DATE = :today", today=date.today())
+        cur.execute(f"SELECT {_MENU_COLS} FROM LUNCH_MENU WHERE MENU_DATE = :today", today=today_kst())
         row = cur.fetchone()
         return _row_to_menu(row) if row else None
 
 
 def get_history(days=30):
-    since = date.today() - timedelta(days=days)
+    since = today_kst() - timedelta(days=days)
     with pool().acquire() as con:
         cur = con.cursor()
         cur.execute(

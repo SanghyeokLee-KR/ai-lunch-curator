@@ -1,5 +1,5 @@
 import hashlib
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 _WEEKDAYS = ["월", "화", "수", "목", "금", "토", "일"]
 
@@ -18,3 +18,11 @@ def korean_date(value):
 def this_week_monday(today=None):
     today = today or date.today()
     return today - timedelta(days=today.weekday())
+
+
+KST = timezone(timedelta(hours=9))  # 한국은 DST 없음 → UTC+9 고정
+
+
+def today_kst():
+    # 서버 타임존(EC2는 UTC)에 안 휘둘리게 '오늘'은 항상 한국 날짜로
+    return datetime.now(KST).date()
