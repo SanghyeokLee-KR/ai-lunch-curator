@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}통계 · AI 점심 큐레이터{% endblock %}
+
+{% block content %}
+<header class="page-head reveal">
+  <p class="eyebrow">통계</p>
+  <h1 class="page-title">한눈에 보기</h1>
+</header>
+
+<div class="stat-cards">
+  <div class="stat-card reveal">
+    <span class="stat-num">{{ stats.total_menus }}</span>
+    <span class="stat-label">저장된 메뉴</span>
+  </div>
+  <div class="stat-card reveal">
+    <span class="stat-num">{{ stats.cached_images }}</span>
+    <span class="stat-label">이미지 캐시</span>
+  </div>
+</div>
+
+<section class="card pad reveal">
+  <h2 class="card-title">자주 나온 메뉴 TOP 5</h2>
+  {% if stats.top_dishes %}
+  {% set top = stats.top_dishes[0].count %}
+  <ul class="bars">
+    {% for row in stats.top_dishes %}
+    <li class="bar-row">
+      <span class="bar-name">{{ row.dish }}</span>
+      <span class="bar-track">
+        <span class="bar-fill" style="--w: {{ (row.count / top * 100) | round(1) }}%"></span>
+      </span>
+      <span class="bar-val">{{ row.count }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">아직 집계할 데이터가 없어요.</p>
+  {% endif %}
+</section>
+{% endblock %}

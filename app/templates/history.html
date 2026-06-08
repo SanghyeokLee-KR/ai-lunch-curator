@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}지난 점심 · AI 점심 큐레이터{% endblock %}
+
+{% block content %}
+<header class="page-head reveal">
+  <p class="eyebrow">최근 30일</p>
+  <h1 class="page-title">지난 점심들</h1>
+</header>
+
+{% if days %}
+<div class="history-grid">
+  {% for d in days %}
+  <article class="hcard reveal">
+    <div class="hcard-media">
+      <img src="{{ d.image_url }}" alt="" loading="lazy"
+           onerror="this.onerror=null;this.src='/static/images/default.png'" />
+      <span class="hcard-kcal">{{ d.analysis.calories|comma }} kcal</span>
+    </div>
+    <div class="hcard-body">
+      <p class="hcard-date">{{ d.date|kdate }}</p>
+      <p class="hcard-menus">{{ d.menus|join(' · ') }}</p>
+      {% if d.analysis.tags %}
+      <div class="pills sm">
+        {% for t in d.analysis.tags[:3] %}<span class="pill">{{ t }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty reveal">
+  <div class="empty-plate"></div>
+  <h1 class="empty-title">아직 기록이 없어요</h1>
+  <p class="empty-text">주간 수집이 돌면 여기에 쌓여요.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}오늘의 점심 · AI 점심 큐레이터{% endblock %}
+
+{% block content %}
+{% if menu %}
+<section class="hero reveal">
+  <figure class="hero-media">
+    <img src="{{ menu.image_url }}" alt="오늘의 점심 이미지"
+         onerror="this.onerror=null;this.src='/static/images/default.png'" />
+    <figcaption class="hero-cap">
+      <p class="eyebrow">{{ menu.date|kdate }}</p>
+      <h1 class="hero-title">오늘의 점심</h1>
+    </figcaption>
+  </figure>
+</section>
+
+<div class="layout">
+  <section class="card reveal">
+    <h2 class="card-title">오늘의 메뉴</h2>
+    <ul class="menu-list">
+      {% for m in menu.menus %}
+      <li><span class="bullet"></span>{{ m }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <aside class="stack">
+    <section class="callout reveal">
+      <p class="callout-quote">{{ menu.analysis.summary }}</p>
+      <p class="callout-by">AI 한줄평</p>
+    </section>
+
+    <section class="card pad reveal">
+      <div class="kcal">
+        <span class="kcal-num">{{ menu.analysis.calories|comma }}</span>
+        <span class="kcal-unit">kcal</span>
+      </div>
+      {% if menu.analysis.tags %}
+      <div class="pills">
+        {% for t in menu.analysis.tags %}<span class="pill">{{ t }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </section>
+
+    {% if menu.analysis.recommendation %}
+    <section class="card sub reveal">
+      <p class="sub-label">추천</p>
+      <p class="sub-text">{{ menu.analysis.recommendation }}</p>
+    </section>
+    {% endif %}
+  </aside>
+</div>
+{% else %}
+<div class="empty reveal">
+  <div class="empty-plate"></div>
+  <h1 class="empty-title">오늘 등록된 메뉴가 없어요</h1>
+  <p class="empty-text">주간 수집이 아직 돌지 않았거나, 오늘은 휴무일이에요.</p>
+  <a class="btn" href="/history">지난 점심 보기</a>
+</div>
+{% endif %}
+{% endblock %}
