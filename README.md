@@ -1,6 +1,6 @@
 <h1 align="center">「오늘 뭐 먹지? - AI Lunch Curator」</h1>
 
-<p align="center"><b>— 광명융합기술교육원 5조</b></p>
+<p align="center"><b>광명융합기술교육원 5조</b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python_3.12-3776AB?logo=python&logoColor=white" alt="Python">
