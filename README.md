@@ -1,16 +1,18 @@
-# 「오늘 뭐 먹지? - AI Lunch Curator」
+<h1 align="center">「오늘 뭐 먹지? - AI Lunch Curator」</h1>
 
-**— 광명융합기술교육원 5조**
+<p align="center"><b>— 광명융합기술교육원 5조</b></p>
 
-![Python](https://img.shields.io/badge/Python_3.12-3776AB?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
-![Oracle](https://img.shields.io/badge/Oracle_XE-F80000?logo=oracle&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker_Compose-2496ED?logo=docker&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS_EC2-FF9900?logo=amazonwebservices&logoColor=white)
-![Nginx](https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white)
-![Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
-![Teams](https://img.shields.io/badge/MS_Teams-5059C9?logo=microsoftteams&logoColor=white)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python_3.12-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/Oracle_XE-F80000?logo=oracle&logoColor=white" alt="Oracle">
+  <img src="https://img.shields.io/badge/Docker_Compose-2496ED?logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white" alt="OpenAI">
+  <img src="https://img.shields.io/badge/AWS_EC2-FF9900?logo=amazonwebservices&logoColor=white" alt="AWS">
+  <img src="https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white" alt="Nginx">
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white" alt="Actions">
+  <img src="https://img.shields.io/badge/MS_Teams-5059C9?logo=microsoftteams&logoColor=white" alt="Teams">
+</p>
 
 > 광명융합기술교육원(KOPO) 구내식당 식단표를 매주 수집해서, OpenAI로 메뉴를 분석·시각화하고 Oracle에 쌓은 뒤,
 > 평일 아침마다 Teams로 "오늘의 점심"을 보내는 자동화 파이프라인입니다. 웹에서는 오늘·이력·통계를 볼 수 있습니다.
@@ -76,11 +78,11 @@ Teams로 보냅니다. 같은 메뉴 이미지는 해시 키로 캐시해 다시
 
 ## 2. 팀 — 5조
 
-| 프로필 | 멤버 | 역할 | 주요 기여 |
-| :---: | :---: | :--- | :--- |
-| <a href="https://github.com/SanghyeokLee-KR"><img src="https://github.com/SanghyeokLee-KR.png" width="60" style="border-radius:50%"></a> | **[이상혁](https://github.com/SanghyeokLee-KR)**<br>*(조장)* | 아키텍처 · 인프라<br>총괄 | 전체 설계, **웹(FastAPI)·DB(Oracle)·이미지 생성**, Docker/EC2/Nginx 배포, GitHub Actions CI/CD, 통합·문서 |
-| <a href="https://github.com/nohhyunju0212"><img src="https://github.com/nohhyunju0212.png" width="60" style="border-radius:50%"></a> | **[노현주](https://github.com/nohhyunju0212)** | 메뉴 AI 분석 | 메뉴 데이터를 받아 **OpenAI로 요약·추천·멘트 생성** (한줄평·예상 칼로리·태그·추천 프롬프트 설계) |
-| <a href="https://github.com/adieud99"><img src="https://github.com/adieud99.png" width="60" style="border-radius:50%"></a> | **[김연동](https://github.com/adieud99)** | 크롤링 · 알림 | **파이썬 크롤링**으로 오늘 급식 점심 메뉴 수집, **Teams Webhook 발송** 연동 |
+| 멤버 | 역할 | 주요 기여 |
+| :---: | :--- | :--- |
+| <a href="https://github.com/SanghyeokLee-KR"><img src="https://github.com/SanghyeokLee-KR.png" width="64"></a><br>**[이상혁](https://github.com/SanghyeokLee-KR)**<br>*(조장)* | 아키텍처 · 인프라 총괄 | 전체 설계, **웹(FastAPI)·DB(Oracle)·이미지 생성**, Docker/EC2/Nginx 배포, GitHub Actions CI/CD, 통합·문서 |
+| <a href="https://github.com/nohhyunju0212"><img src="https://github.com/nohhyunju0212.png" width="64"></a><br>**[노현주](https://github.com/nohhyunju0212)** | 메뉴 AI 분석 | 메뉴 데이터를 받아 **OpenAI로 요약·추천·멘트 생성** (한줄평·예상 칼로리·태그·추천 프롬프트 설계) |
+| <a href="https://github.com/adieud99"><img src="https://github.com/adieud99.png" width="64"></a><br>**[김연동](https://github.com/adieud99)** | 크롤링 · 알림 | **파이썬 크롤링**으로 오늘 급식 점심 메뉴 수집, **Teams Webhook 발송** 연동 |
 
 ---
 
@@ -245,11 +247,11 @@ is received"로 받은 URL을 씁니다. 페이로드는 message 봉투 + Adapti
 
 | 막은 것 | 어떻게 |
 |---|---|
-| **키·웹훅이 깃에 올라가는 것** | `.env`를 `.gitignore`로 추적 제외. 코드엔 `os.getenv`로만 읽고 값은 하드코딩하지 않음 |
-| **실수로 커밋되는 것** | 저장소 공개 전 `git grep`으로 키·웹훅·비밀번호 패턴을 스캔(추적 파일에 평문 0건 확인) |
-| **CI·배포에서 노출되는 것** | GitHub Secrets로만 주입. 배포 시 `.env`를 Secrets로 EC2에 생성(로그엔 마스킹) |
-| **아무나 트리거를 부르는 것** | 수집·발송 엔드포인트에 **Bearer 토큰** 게이트 → 없으면 **401**. 키를 쓰는 비싼 작업을 외부에서 못 부름 |
-| **앱 포트 직접 노출** | 앱 `:8000`은 `127.0.0.1` 바인드 + 보안 그룹 22·80만. 외부엔 Nginx(:80)만 |
+| **키·웹훅이 깃에 올라가는 것** | `.env`를 `.gitignore`로 추적 제외.<br>코드엔 `os.getenv`로만 읽고 값은 하드코딩하지 않음 |
+| **실수로 커밋되는 것** | 저장소 공개 전 `git grep`으로 키·웹훅·비밀번호 패턴 스캔<br>(추적 파일에 평문 0건 확인) |
+| **CI·배포에서 노출되는 것** | GitHub Secrets로만 주입.<br>배포 시 `.env`를 Secrets로 EC2에 생성(로그엔 마스킹) |
+| **아무나 트리거를 부르는 것** | 수집·발송 엔드포인트에 **Bearer 토큰** 게이트 → 없으면 **401**.<br>키를 쓰는 비싼 작업을 외부에서 못 부름 |
+| **앱 포트 직접 노출** | 앱 `:8000`은 `127.0.0.1` 바인드 + 보안 그룹 22·80만.<br>외부엔 Nginx(:80)만 |
 
 > 노출 위험이 있던 키는 작업 후 폐기·재발급하는 것을 원칙으로 합니다. (`.env.example`에는 형식만 두고 실제 값은 넣지 않습니다.)
 
