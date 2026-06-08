@@ -1,0 +1,56 @@
+# AI 점심 큐레이터 — 로컬/EC2 공용 구성
+# 주의: Oracle XE 는 메모리를 많이 쓴다. 작은 EC2(t3.small, 2GB)면 스왑 2GB 를 꼭 잡아둘 것.
+#       t2/t3.micro(1GB)에선 Oracle XE 가 안 뜬다.
+services:
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: lunch-oracle
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_ADMIN_PASSWORD}    # SYS/SYSTEM 비번
+      APP_USER: ${ORACLE_USER}                     # 앱 전용 유저를 XEPDB1 에 자동 생성
+      APP_USER_PASSWORD: ${ORACLE_PASSWORD}
+    ports:
+      - "1522:1521"   # 호스트 1521 이 이미 점유돼 1522 로 매핑(컨테이너 내부는 1521 유지)
+    volumes:
+      - oracle-data:/opt/oracle/oradata            # DB 데이터 영속(명명 볼륨)
+    healthcheck:                                   # 이미지가 제공하는 healthcheck.sh 사용(이미지 자체엔 HEALTHCHECK 미설정)
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 150s
+
+  app:
+    build: .
+    container_name: lunch-app
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      ORACLE_USER: ${ORACLE_USER}
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      ORACLE_DSN: "oracle:1521/XEPDB1"             # 컨테이너 네트워크 기준 DSN
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_TEXT_MODEL: ${OPENAI_TEXT_MODEL}
+      OPENAI_IMAGE_MODEL: ${OPENAI_IMAGE_MODEL}
+      WEBHOOK_URL: ${WEBHOOK_URL}
+      APP_BASE_URL: ${APP_BASE_URL}
+      MENU_SOURCE_URL: ${MENU_SOURCE_URL}
+      COLLECT_TOKEN: ${COLLECT_TOKEN}
+    # Phase 4: 웹 서버. 코드가 바인드 마운트라 --reload 로 핫리로드(개발 편의).
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--reload-dir", "/app/app"]
+    ports:
+      # 127.0.0.1 로만 바인드 → 외부에서 8000 직접 접근 차단(Nginx 만 외부 공개).
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./app:/app/app      # 앱 코드 + 생성 이미지(호스트 바인드: 코드 반영 + 이미지 영속, DB 볼륨과 별개)
+      - ./data:/app/data    # Phase 1 수집 결과(시드 소스)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+volumes:
+  oracle-data:
