@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="수집·발송 시퀀스" id="seq">
+    <mxGraphModel dx="1400" dy="820" grid="0" pageWidth="1160" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="수집 · 발송 시퀀스" style="text;html=1;align=left;fontSize=22;fontStyle=1;fontColor=#1F2937;" vertex="1" parent="1"><mxGeometry x="44" y="26" width="500" height="30" as="geometry" /></mxCell>
+        <mxCell id="rule" value="" style="rounded=1;fillColor=#C2613D;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="46" y="58" width="46" height="4" as="geometry" /></mxCell>
+
+        <mxCell id="hGHA" value="&lt;b&gt;GitHub Actions&lt;/b&gt;" style="rounded=1;html=1;fillColor=#EEF2F7;strokeColor=#C0C7D1;fontSize=12;" vertex="1" parent="1"><mxGeometry x="48" y="78" width="130" height="42" as="geometry" /></mxCell>
+        <mxCell id="hApp" value="&lt;b&gt;FastAPI&lt;/b&gt;" style="rounded=1;html=1;fillColor=#EEF2F7;strokeColor=#C0C7D1;fontSize=12;" vertex="1" parent="1"><mxGeometry x="258" y="78" width="130" height="42" as="geometry" /></mxCell>
+        <mxCell id="hKopo" value="&lt;b&gt;KOPO 식단표&lt;/b&gt;" style="rounded=1;html=1;fillColor=#EEF2F7;strokeColor=#C0C7D1;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="78" width="130" height="42" as="geometry" /></mxCell>
+        <mxCell id="hAI" value="&lt;b&gt;OpenAI&lt;/b&gt;" style="rounded=1;html=1;fillColor=#EEF2F7;strokeColor=#C0C7D1;fontSize=12;" vertex="1" parent="1"><mxGeometry x="630" y="78" width="130" height="42" as="geometry" /></mxCell>
+        <mxCell id="hDB" value="&lt;b&gt;Oracle XE&lt;/b&gt;" style="rounded=1;html=1;fillColor=#EEF2F7;strokeColor=#C0C7D1;fontSize=12;" vertex="1" parent="1"><mxGeometry x="805" y="78" width="130" height="42" as="geometry" /></mxCell>
+        <mxCell id="hTM" value="&lt;b&gt;Teams&lt;/b&gt;" style="rounded=1;html=1;fillColor=#EEF2F7;strokeColor=#C0C7D1;fontSize=12;" vertex="1" parent="1"><mxGeometry x="975" y="78" width="130" height="42" as="geometry" /></mxCell>
+
+        <mxCell id="lGHA" style="endArrow=none;dashed=1;strokeColor=#C0C7D1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="113" y="120" as="sourcePoint" /><mxPoint x="113" y="640" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lApp" style="endArrow=none;dashed=1;strokeColor=#C0C7D1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="120" as="sourcePoint" /><mxPoint x="323" y="640" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lKopo" style="endArrow=none;dashed=1;strokeColor=#C0C7D1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="520" y="120" as="sourcePoint" /><mxPoint x="520" y="640" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lAI" style="endArrow=none;dashed=1;strokeColor=#C0C7D1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="695" y="120" as="sourcePoint" /><mxPoint x="695" y="640" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lDB" style="endArrow=none;dashed=1;strokeColor=#C0C7D1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="870" y="120" as="sourcePoint" /><mxPoint x="870" y="640" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lTM" style="endArrow=none;dashed=1;strokeColor=#C0C7D1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1040" y="120" as="sourcePoint" /><mxPoint x="1040" y="640" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="band1" value="주간 수집 · 월요일 08:30 KST" style="rounded=0;fillColor=#FBF1E8;strokeColor=none;align=left;spacingLeft=12;fontColor=#A05A2C;fontSize=11;fontStyle=1;html=1;" vertex="1" parent="1"><mxGeometry x="44" y="142" width="1066" height="24" as="geometry" /></mxCell>
+
+        <mxCell id="m1" value="POST /api/collect-weekly + Bearer 토큰" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="113" y="190" as="sourcePoint" /><mxPoint x="323" y="190" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m2" value="202 Accepted (백그라운드 처리)" style="html=1;endArrow=open;dashed=1;strokeColor=#8A94A6;fontColor=#6B7280;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="222" as="sourcePoint" /><mxPoint x="113" y="222" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m3" value="식단표 크롤링" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="262" as="sourcePoint" /><mxPoint x="520" y="262" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m4" value="메뉴 분석 + 대표 이미지" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="302" as="sourcePoint" /><mxPoint x="695" y="302" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m5" value="MERGE UPSERT (+ MENU_ITEM 재구성)" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="342" as="sourcePoint" /><mxPoint x="870" y="342" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="band2" value="일일 발송 · 평일 09:00 KST" style="rounded=0;fillColor=#EAF1F7;strokeColor=none;align=left;spacingLeft=12;fontColor=#2B6CA3;fontSize=11;fontStyle=1;html=1;" vertex="1" parent="1"><mxGeometry x="44" y="392" width="1066" height="24" as="geometry" /></mxCell>
+
+        <mxCell id="m6" value="POST /api/send-today + Bearer 토큰" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="113" y="440" as="sourcePoint" /><mxPoint x="323" y="440" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m7" value="오늘 메뉴 조회" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="480" as="sourcePoint" /><mxPoint x="870" y="480" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m8" value="Adaptive Card 발송" style="html=1;endArrow=block;strokeColor=#566173;fontColor=#1F2937;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="323" y="520" as="sourcePoint" /><mxPoint x="1040" y="520" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="note" value="무거운 작업(크롤링·분석·이미지)은 백그라운드로 즉시 202 반환 · 트리거는 Bearer 토큰 필요(없으면 401)" style="text;html=1;align=left;fontSize=12;fontColor=#6B7280;" vertex="1" parent="1"><mxGeometry x="44" y="600" width="1000" height="20" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
