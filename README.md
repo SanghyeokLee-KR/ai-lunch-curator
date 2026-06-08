@@ -231,7 +231,7 @@ EC2(Ubuntu, t3.small + 스왑)에 `docker compose`로 올리고, 외부엔 Nginx
 
 ## 9. Teams 발송
 
-Teams **Workflows**의 "Post to a channel when a webhook request is received"로 받은 URL을 씁니다. 페이로드는 message 봉투 + Adaptive Card 형식입니다.
+Teams **Workflows**의 "웹후크 경고 보내기"로 받은 URL을 씁니다. 페이로드는 message 봉투 + Adaptive Card 형식입니다.
 
 <p align="center"><img src="docs/screenshots/02-teams-card.png" width="380" alt="teams card"></p>
 
