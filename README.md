@@ -16,6 +16,9 @@
 
 > 광명융합기술교육원(KOPO) 구내식당 식단표를 매주 수집해서, OpenAI로 메뉴를 분석·시각화하고 Oracle에 쌓은 뒤,
 > 평일 아침마다 Teams로 "오늘의 점심"을 보내는 자동화 파이프라인입니다. 웹에서는 오늘·이력·통계를 볼 수 있습니다.
+>
+> **운영 기간: 2026-06-08 ~ 2026-06-09 (수업 과제 기간).** 현재는 EC2 인스턴스를 내려 상시 발송을 하지 않습니다.
+> 스케줄 워크플로는 꺼 두었고, `workflow_dispatch`로 수동 실행하면 동작 흐름을 확인할 수 있습니다.
 
 <details>
 <summary><b>📋 과제 브리프 보기 (담당 교수님 공지)</b></summary>
@@ -194,11 +197,13 @@ erDiagram
 | 워크플로 | 트리거 | 하는 일 |
 |---|---|---|
 | `ci.yml` | push / PR | `pytest` (목킹이라 시크릿 불필요) |
-| `weekly-menu.yml` | 월 08:30 KST + 수동 | 수집 엔드포인트 호출 (Bearer 토큰) |
-| `daily-notify.yml` | 평일 09:00 KST + 수동 | 발송 엔드포인트 호출 |
+| `weekly-menu.yml` | 수동(`workflow_dispatch`) · 운영 당시 월 08:30 KST | 수집 엔드포인트 호출 (Bearer 토큰) |
+| `daily-notify.yml` | 수동(`workflow_dispatch`) | 발송 엔드포인트 호출. 운영 당시엔 평일 09:00 KST 스케줄로 돌았습니다 |
 | `deploy.yml` | main push | **테스트 통과를 선행 조건**으로 EC2 SSH 배포 |
 
 > GitHub Actions 스케줄은 정시 보장이 안 되고(수 분~수십 분 지연), 레포가 60일 비활성이면 자동 비활성화됩니다.
+>
+> 현재 스케줄 트리거는 제거했습니다. 대상 EC2를 내린 뒤에도 cron이 계속 돌아 호출이 타임아웃으로 실패했기 때문입니다. cron 식은 워크플로 파일 주석에 남겨 두어 인스턴스를 다시 띄우면 되살릴 수 있습니다.
 
 <p align="center"><img src="diagrams/png/03-cicd.png" width="960" alt="CI/CD 파이프라인"></p>
 

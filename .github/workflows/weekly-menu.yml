@@ -7,11 +7,12 @@ name: Weekly Menu Collect
 #   - 레포가 60일간 비활성이면 스케줄이 자동 비활성화된다.
 #   - 기본 브랜치(main)의 워크플로만 스케줄로 동작한다.
 #   - APP_BASE_URL 은 GitHub 러너에서 닿는 '공개' 주소여야 한다(EC2 배포 후).
+# 스케줄은 껐다. 수업 기간 종료로 APP_BASE_URL 대상 EC2가 내려가면서
+# 2026-06-09 이후 스케줄 실행이 전부 curl 타임아웃으로 실패했다.
+# 인스턴스를 다시 띄우면 아래 주석의 cron 을 schedule 블록으로 되살린다.
+#   - cron: "30 23 * * 0"
 on:
-  schedule:
-    - cron: "30 23 * * 0"
   workflow_dispatch: {} # 수동 실행(데모/백필)
-
 jobs:
   collect:
     runs-on: ubuntu-latest
