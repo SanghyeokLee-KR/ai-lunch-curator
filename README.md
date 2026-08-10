@@ -21,7 +21,7 @@
 > 스케줄 워크플로는 꺼 두었고, `workflow_dispatch`로 수동 실행하면 동작 흐름을 확인할 수 있습니다.
 
 <details>
-<summary><b>📋 과제 브리프 보기 (담당 교수님 공지)</b></summary>
+<summary><b> 과제 브리프 보기 (담당 교수님 공지)</b></summary>
 <br>
 
 ![과제 브리프](docs/screenshots/00-mission.png)
@@ -30,7 +30,7 @@
 
 </details>
 
-> **감사의 글** — 이번 팀 과제에서 **OpenAI API 키를 제공해 주신 교수님께 감사드립니다.** 덕분에 메뉴 분석과 대표 이미지 생성까지 실제로 붙여볼 수 있었습니다. 제공받은 키가 공개 저장소에 노출되지 않도록 [10. 보안 · 비밀값 관리](#10-보안--비밀값-관리)의 조치를 적용했습니다.
+> **감사의 글**: 이번 팀 과제에서 **OpenAI API 키를 제공해 주신 교수님께 감사드립니다.** 덕분에 메뉴 분석과 대표 이미지 생성까지 실제로 붙여볼 수 있었습니다. 제공받은 키가 공개 저장소에 노출되지 않도록 [10. 보안 · 비밀값 관리](#10-보안--비밀값-관리)의 조치를 적용했습니다.
 
 ![오늘의 점심](docs/screenshots/06-web-today.png)
 
@@ -39,13 +39,13 @@
 <br>
 
 * [1. 프로젝트 개요](#1-프로젝트-개요)
-* [2. 팀 — 5조](#2-팀--5조)
+* [2. 팀 · 5조](#2-팀--5조)
 * [3. 화면](#3-화면)
 * [4. 코어 봇 · 테스트](#4-코어-봇--테스트)
 * [5. 아키텍처 · 데이터 모델](#5-아키텍처--데이터-모델)
-* [6. 데이터 — Oracle](#6-데이터--oracle)
-* [7. GitHub Actions — 스케줄 · CI/CD](#7-github-actions--스케줄--cicd)
-* [8. 배포 — EC2 · Nginx](#8-배포--ec2--nginx)
+* [6. 데이터 · Oracle](#6-데이터--oracle)
+* [7. GitHub Actions · 스케줄 · CI/CD](#7-github-actions--스케줄--cicd)
+* [8. 배포 · EC2 · Nginx](#8-배포--ec2--nginx)
 * [9. Teams 발송](#9-teams-발송)
 * [10. 보안 · 비밀값 관리](#10-보안--비밀값-관리)
 * [11. 트러블슈팅](#11-트러블슈팅)
@@ -79,7 +79,7 @@ Teams로 보냅니다. 같은 메뉴 이미지는 해시 키로 캐시해 다시
 
 ---
 
-## 2. 팀 — 5조
+## 2. 팀 · 5조
 
 | 멤버 | 역할 | 주요 기여 |
 | :---: | :--- | :--- |
@@ -178,7 +178,7 @@ erDiagram
 
 ---
 
-## 6. 데이터 — Oracle
+## 6. 데이터 · Oracle
 
 `LUNCH_MENU`(날짜별 메뉴·분석), `MENU_IMAGE_CACHE`(해시→이미지), 통계용 `MENU_ITEM`으로 나눴습니다.
 "자주 나온 메뉴"는 `MENU_ITEM`을 `GROUP BY`로 집계합니다.
@@ -192,7 +192,7 @@ erDiagram
 
 ---
 
-## 7. GitHub Actions — 스케줄 · CI/CD
+## 7. GitHub Actions · 스케줄 · CI/CD
 
 | 워크플로 | 트리거 | 하는 일 |
 |---|---|---|
@@ -209,14 +209,14 @@ erDiagram
 
 <table align="center">
 <tr>
-<td align="center" width="50%"><img src="docs/screenshots/09-ci.png" alt="ci"><br><b>CI — pytest 통과</b></td>
+<td align="center" width="50%"><img src="docs/screenshots/09-ci.png" alt="ci"><br><b>CI · pytest 통과</b></td>
 <td align="center" width="50%"><img src="docs/screenshots/10-action.png" alt="actions"><br><b>스케줄 워크플로 · 수동 실행 성공</b></td>
 </tr>
 </table>
 
 ---
 
-## 8. 배포 — EC2 · Nginx
+## 8. 배포 · EC2 · Nginx
 
 EC2(Ubuntu, t3.small + 스왑)에 `docker compose`로 올리고, 외부엔 Nginx(80)만 노출합니다. 앱(8000)은 `127.0.0.1`로만
 바인드하고 보안 그룹은 22·80만 열어, 8000·1521 같은 내부 포트는 밖에서 닿지 않습니다.
@@ -225,7 +225,7 @@ EC2(Ubuntu, t3.small + 스왑)에 `docker compose`로 올리고, 외부엔 Nginx
 
 <table align="center">
 <tr>
-<td align="center" width="50%"><img src="docs/screenshots/docker-desktop.png" alt="docker"><br><b>로컬 — Docker Compose</b></td>
+<td align="center" width="50%"><img src="docs/screenshots/docker-desktop.png" alt="docker"><br><b>로컬 · Docker Compose</b></td>
 <td align="center" width="50%"><img src="docs/screenshots/11-401.png" alt="401"><br><b>토큰 없는 호출 → 401</b></td>
 </tr>
 </table>
@@ -292,7 +292,7 @@ Teams **Workflows**의 "웹후크 경고 보내기"로 받은 URL을 씁니다. 
 
 **실무로 간다면**
 
-- **HTTPS + 도메인** — `certbot`으로 TLS, 그러면 카드 이미지까지 렌더됩니다.
+- **HTTPS + 도메인**: `certbot`으로 TLS, 그러면 카드 이미지까지 렌더됩니다.
 - **이미지 빌드 → 레지스트리(GHCR) → EC2는 pull만**, 또는 ASG + Launch Template으로 교체형 배포.
 - **RDS** 같은 관리형 DB로 백업·가용성 위임.
 - 크롤링 실패·구조 변경을 알림으로 잡고, 공식 API가 있으면 교체.
@@ -327,7 +327,7 @@ docker compose exec app python scripts/seed.py   # 데이터 적재
 # http://localhost:8000
 ```
 
-**환경변수** — `.env`(로컬) / GitHub Secrets(CI·배포)로만 두고 깃에는 올리지 않습니다.
+**환경변수**: `.env`(로컬) / GitHub Secrets(CI·배포)로만 두고 깃에는 올리지 않습니다.
 
 | 키 | 설명 |
 |---|---|
