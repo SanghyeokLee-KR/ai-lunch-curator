@@ -54,9 +54,9 @@ def cmd_notify():
         logger.warning("오늘(%s) 메뉴가 없어 %s 로 대체", today, menu["date"])
 
     base_url = os.getenv("APP_BASE_URL", "http://localhost:8000")
-    logger.info("발송 — %s", korean_date(menu["date"]))
+    logger.info("발송. %s", korean_date(menu["date"]))
     ok = send_today_card(menu, base_url)
-    logger.info("발송 결과 — %s", "성공" if ok else "실패")
+    logger.info("발송 결과: %s", "성공" if ok else "실패")
 
 
 def _enable_utf8_output():

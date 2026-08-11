@@ -22,7 +22,7 @@ def generate_image(menus, menu_hash, client=None, images_dir=None,
 
     # 같은 메뉴면 다시 안 만든다. 로컬 파일 먼저, 그 다음 DB 캐시.
     if out_path.exists():
-        logger.info("이미지 캐시 히트 — %s", out_path.name)
+        logger.info("이미지 캐시 히트. %s", out_path.name)
         return rel_url
     if get_cached is not None:
         cached = get_cached(menu_hash)
@@ -37,7 +37,7 @@ def generate_image(menus, menu_hash, client=None, images_dir=None,
         out_path.write_bytes(_extract_image_bytes(result.data[0]))
         if save_cached is not None:
             save_cached(menu_hash, rel_url)
-        logger.info("이미지 생성 — %s", rel_url)
+        logger.info("이미지 생성. %s", rel_url)
         return rel_url
     except Exception as exc:
         logger.warning("이미지 생성 실패(%s) → 기본 이미지", exc)

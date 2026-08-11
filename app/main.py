@@ -117,4 +117,4 @@ def _run_weekly_collect():
         analysis = analyze_menu(menus)
         image_url = generate_image(menus, digest, get_cached=db.get_cached_image, save_cached=db.save_cached_image)
         db.upsert_menu(day["date"], digest, menus, analysis, image_url)
-    logger.info("주간 수집 완료 — %d일치", len(week))
+    logger.info("주간 수집 완료. %d일치", len(week))
